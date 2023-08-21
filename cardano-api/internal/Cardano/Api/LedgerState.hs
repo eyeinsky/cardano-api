@@ -12,8 +12,12 @@
 {- HLINT ignore "Redundant fmap" -}
 
 module Cardano.Api.LedgerState
-  ( -- * Initialization / Accumulation
-    envSecurityParam
+  -- * Export everything from here
+  ( module Cardano.Api.LedgerState
+
+  -- Although LedgerState and patterns are defined here, then patterns
+  -- appear not to be exported by default, so we need to export them
+  -- explicitly:
   , LedgerState
       ( ..
       , LedgerStateByron
@@ -24,61 +28,13 @@ module Cardano.Api.LedgerState
       , LedgerStateBabbage
       , LedgerStateConway
       )
-  , encodeLedgerState
-  , decodeLedgerState
-  , initialLedgerState
-  , applyBlock
-  , ValidationMode(..)
-  , applyBlockWithEvents
 
-    -- * Traversing the block chain
-  , foldBlocks
-  , chainSyncClientWithLedgerState
-  , chainSyncClientPipelinedWithLedgerState
-
-   -- * Errors
-  , LedgerStateError(..)
-  , FoldBlocksError(..)
-  , GenesisConfigError(..)
-  , InitialLedgerStateError(..)
-  , renderLedgerStateError
-  , renderFoldBlocksError
-  , renderGenesisConfigError
-  , renderInitialLedgerStateError
-
-  -- * Leadership schedule
-  , LeadershipError(..)
-  , constructGlobals
-  , currentEpochEligibleLeadershipSlots
-  , nextEpochEligibleLeadershipSlots
-  -- * Node Config
-  , NodeConfig(..)
-  -- ** Network Config
-  , NodeConfigFile
-  , readNodeConfig
-  -- ** Genesis Config
-  , GenesisConfig (..)
-  , readCardanoGenesisConfig
-  , mkProtocolInfoCardano
-  -- *** Byron Genesis Config
-  , readByronGenesisConfig
-  -- *** Shelley Genesis Config
+  -- * Re-exports
   , ShelleyConfig (..)
   , GenesisHashShelley (..)
-  , readShelleyGenesisConfig
-  , shelleyPraosNonce
-  -- *** Alonzo Genesis Config
   , GenesisHashAlonzo (..)
-  , readAlonzoGenesisConfig
-  -- *** Conway Genesis Config
   , GenesisHashConway (..)
-  , readConwayGenesisConfig
-  -- ** Environment
-  , Env(..)
-  , genesisConfigToEnv
-
-  )
-  where
+  ) where
 
 import           Cardano.Api.Block
 import           Cardano.Api.Certificate
